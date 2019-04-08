@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet">
+      <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Open+Sans" />
+      
+<!--jquery-->
+<script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.js"></script>
+<script src="/lib/jquery.plugin.js"></script>
+<!--datatables-->
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.16/css/jquery.dataTables.min.css">
+<script type="text/javascript" src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
+
+<style>
+    * {
+       font-family: "Open Sans";
+        color:white; }
+ .top-nav {
+height:60px;
+background-color:#202020  ;
+z-index:10;
+  position: fixed;
+  top:0;
+  left:0;
+  width:100%;
+  padding:10px;
+ }
+
+
+.nav-link {
+    float:right;
+    color:white;
+    padding:3px 30px ;
+}
+.sidenav {
+  height: 100%;
+  width: 200px;
+  position: fixed;
+  z-index: -1;
+padding:10px;
+  top: 0px;
+  padding-top:50px;
+  left: 0;
+  background-color: #111;
+  overflow-x: hidden;
+  transition: 0.5s;
+  font-size:1px
+}
+
+.sidenav a {
+  padding: 8px 8px 8px 20px;
+  text-decoration: none;
+  font-size: 10px;
+  color: #818181;
+  display: block;
+  transition: 0.3s;
+}
+
+.sidenav a:hover {
+  color: #f1f1f1;
+}
+
+.sidenav .closebtn {
+  position: absolute;
+  top: 0;
+  right: 25px;
+  font-size: 36px;
+  margin-left: 50px;
+}
+
+@media screen and (max-height: 450px) {
+  .sidenav {padding-top: 15px;}
+  .sidenav a {font-size: 18px;}
+}
+.left-nav-open {
+    font-size:30px;
+    cursor:pointer;
+    color:white;
+    font-size: 20px;
+    margin-left:10px;
+  
+}
+
+hr {
+    display: block;
+    height: 1px;
+    border: 0;
+    border-top: 1px solid #ccc;
+    margin: 1em 0;
+    padding: 0; 
+}
+
+.side-nav-link {
+font-size: 18px;
+display:inline;
+
+}
+
+.profile-info {
+color:white;
+text-align: center;
+}
+.profile {
+    margin:20px;
+}
+
+.profile-icon {
+    font-size:100px;
+    text-align: center;
+    padding: 10px 20px;
+}
+.dashboard-content {
+    position:absolute;
+    padding-top:60px; 
+    top:0px;
+    left:200px;
+  
+    border-spacing:50px 20px;
+    background-color:#464856;
+min-height:100%;
+min-width:85.95%
+}
+.material-icons {
+     position: relative;
+  top: 6px;
+
+}
+
+#logo {
+  margin-left:35px;
+  margin-top:3px;
+}
+.advertisement {
+   
+    
+}
+.image-ads {
+    width:100%;
+    
+    
+}
+#my-cars {
+    padding-top:10px;
+    padding-left:20px;
+}
+.listing-info {
+     background-color:#FAF9FA;
+
+     background-position: 9px 0px;
+     background-repeat: no-repeat;
+    
+     border-radius: 6px;
+     line-height: 18px;
+     overflow: hidden;
+    padding: 30px 30px;
+     margin:20px;
+     height:150px;
+     width:500px;
+       display:inline-block;
+        border:solid 2px #606060;
+        text-align:center;
+        border: solid 1px red;  
+        margin:30px 50px;
+}
+.listing-details {
+      color:black;
+      text-align:center;
+   
+}
+
+.car-name {
+      color:black;
+      text-align:center;
+          font-weight:700;
+}
+
+.car-info {
+     background-color:#FAF9FA;
+
+     background-position: 9px 0px;
+     background-repeat: no-repeat;
+    
+     border-radius: 6px;
+     line-height: 18px;
+     overflow: hidden;
+    padding: 30px 30px;
+     margin:20px;
+     height:200px;
+     width:500px;
+       display:inline-block;
+        border:solid 2px #606060;
+        text-align:center;
+        border: solid 1px red;  
+}
+
+.car-document {
+    box-shadow:inset 0px 1px 0px 0px #fff6af;
+
+	background:linear-gradient(to bottom, #FAF9FA 5%, #ffab23 100%);
+	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffec64', endColorstr='#ffab23',GradientType=0);
+	background-color:#a88a05;
+
+	border-radius:6px;
+	border:1px solid #ffaa22;
+	display:inline-block;
+	cursor:pointer;
+	color:#333333;
+
+
+	text-decoration:none;
+	text-shadow:0px 1px 0px #ffee66;
+    margin:5px;
+    padding:8px 5px;
+}
+
+.car-image {
+     height:100px;
+}
+
+.transction-buttons {
+  box-shadow:inset 0px 1px 0px 0px #fff6af;
+
+	background:linear-gradient(to bottom, #FAF9FA 5%, #ffab23 100%);
+	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffec64', endColorstr='#ffab23',GradientType=0);
+	background-color:#a88a05;
+
+	border-radius:6px;
+	border:1px solid #ffaa22;
+	display:inline-block;
+	cursor:pointer;
+	color:#333333;
+
+
+	text-decoration:none;
+	text-shadow:0px 1px 0px #ffee66;
+
+padding:5px 10px;
+margin:20px 50px;
+}
+
+#all-listings {
+    
+}
+</style>
+</head>
+<body>
+
+<div class="top-nav">
+  <img id="logo" src="/images/logo.jpg" height="40px"></img>
+   <h6 style="cursor:pointer"onclick="logout()" class="nav-link">Logout</h6>
+<a href="/dashboard" class="nav-link">MyDashboard</a>
+</div>
+
+<div id="mySidenav" class="sidenav">
+<div class="profile">
+<i class="material-icons profile-icon">account_circle</i>
+    <h6 class="profile-info">Logged In As: <br><b><p style="margin:5px" id="username"></p></b></h6>
+</div>
+<hr>
+ <div class="sidenav-element"> <a href="/cars"><i class="material-icons">time_to_leave</i> <p class="side-nav-link">&nbsp;&nbsp;Cars</p></a>
+  </div><hr>
+  <div class="sidenav-element"><a href="/coe"> <i class="material-icons">bookmarks</i> <p class="side-nav-link">&nbsp;&nbsp;COE</p></a>
+  </div><hr>
+  <div class="sidenav-element"><a href="/insurance"><i class="material-icons">description</i> <p class="side-nav-link">&nbsp;&nbsp;Insurance</p> </a>
+  </div><hr>
+ <div class="sidenav-element"> <a href="/transactions"><i class="material-icons">list</i> <p class="side-nav-link">&nbsp; Transaction</p></a>
+</div></div>
+
+<div class="dashboard-content">
+
+
+<div id="all-listings">
+  
+
+
+
+</div>
+
+    </div>
+
+    <script type="text/javascript">
+
+    /*
+    
+      $(document).ready(function () {
+
+  let currentUser;
+        $.ajax({
+            url: "/hlf/api/system/ping",
+            async: false,
+            success: (function (data) {
+                currentUser = data.participant;
+            })
+        })
+            $.ajax({
+                method: "POST",
+                url: "/hlf/api/org.nus.carnetwork.retrieveCarListingForOffer",
+               data: {
+               "$class": "org.nus.carnetwork.retrieveCarListingForOffer",
+                "person": currentUser,
+                } 
+                
+				//success: updatePage,
+				//error:  error
+            }).done(function (msg) {
+              $('#all-listings').html(function() {
+      
+var output = '';
+              var jason = JSON.stringify(msg);
+              console.log(msg);
+              console.log(jason);
+              console.log("hello");
+for (var i = 0; i < msg.length; i++) {
+      
+       output += "<div class=\"car-info\">"; 
+        output +=   "<h6 class=\"car-name\">Car Plate Number: " + msg[i].reservePrice + "</h6>";
+               output += "</div>";
+              }
+              return output;
+               
+            })
+})
+    });
+
+
+*/
+  function logout() {
+ localStorage.removeItem('username');
+ 
+                
+                      $.ajax({
+    method: "POST",
+            url: "/logout",
+
+        
+        }).done(function (data) {
+          console.log("DONE");
+          
+          window.location.replace("/login");
+            }).fail(function (error) {
+   console.log(error.responseText)
+  })
+  }
+document.getElementById('username').innerHTML = localStorage.username;
+    $(document).ready(function () {
+       let currentUser;
+        $.ajax({
+            url: "/" + localStorage.username + "/api/system/ping",
+            async: false,
+            success: (function (data) {
+                currentUser = data.participant;
+                
+            })
+        })
+
+        $.ajax({
+            url: "/" + localStorage.username + "/api/org.nus.carnetwork.CarListing"
+        }).done(function (data) {
+          let myListings = [];
+          console.log(data);
+            data.forEach(function (listing) {
+               console.log("hi");
+                console.log(listing.seller.substring(35) );
+                console.log(currentUser.substring(26) );
+                console.log(listing.state);
+              if(listing.seller.substring(35) == currentUser.substring(26) && listing.state==="FOR_SALE"){
+                myListings.push(listing);
+               
+              }
+             
+            });
+              $('#all-listings').html(function() {
+      
+output = '';
+           
+             console.log(myListings[2]); 
+            	for (var i = 0; i < myListings.length; i++) {
+              var carPlateNum = myListings[i].car.substring(32);
+              console.log(carPlateNum);
+        
+       output += "<div class=\"car-info\">"; 
+         output +=   "<h6 class=\"car-name\">Car Plate Number: " + carPlateNum+ "</h6>";
+        output +=   "<h6 class=\"car-name\">Reserve Price: " +myListings[i].reservePrice+ "</h6>";
+          output += "<button class=\"car-document\" style=\"color:black\">View COE </button>";
+        output += "<button class=\"car-document\"  style=\"color:black\">View Insurance </button>";
+            output += "<button class=\"car-document\"  style=\"color:black\">View Inspection Doc</button>";
+            output += '<a href="/mylistings/'+ myListings[i].listingId+'"><button class=\"car-document\" style="color:black">View Details</button> </a>';
+
+            output += "</div>";
+     
+              }
+              
+              return output;
+                    })
+        });
+
+
+                });
+
+</script>
+    </body>
+    </html>

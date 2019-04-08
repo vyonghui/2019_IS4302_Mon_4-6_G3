@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet">
+      <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Open+Sans" />
+      
+<!--jquery-->
+<script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.js"></script>
+
+
+<style>
+    * {
+       font-family: "Open Sans";
+        color:white; }
+ .top-nav {
+height:60px;
+background-color:#202020  ;
+z-index:10;
+  position: fixed;
+  top:0;
+  left:0;
+  width:100%;
+  padding:10px;
+ }
+
+
+.nav-link {
+    float:right;
+    color:white;
+    padding:3px 30px ;
+}
+.sidenav {
+  height: 100%;
+  width: 200px;
+  position: fixed;
+  z-index: -1;
+padding:10px;
+  top: 0px;
+  padding-top:50px;
+  left: 0;
+  background-color: #111;
+  overflow-x: hidden;
+  transition: 0.5s;
+  font-size:1px
+}
+
+.sidenav a {
+  padding: 8px 8px 8px 20px;
+  text-decoration: none;
+  font-size: 10px;
+  color: #818181;
+  display: block;
+  transition: 0.3s;
+}
+
+.sidenav a:hover {
+  color: #f1f1f1;
+}
+
+.sidenav .closebtn {
+  position: absolute;
+  top: 0;
+  right: 25px;
+  font-size: 36px;
+  margin-left: 50px;
+}
+
+@media screen and (max-height: 450px) {
+  .sidenav {padding-top: 15px;}
+  .sidenav a {font-size: 18px;}
+}
+.left-nav-open {
+    font-size:30px;
+    cursor:pointer;
+    color:white;
+    font-size: 20px;
+    margin-left:10px;
+  
+}
+
+hr {
+    display: block;
+    height: 1px;
+    border: 0;
+    border-top: 1px solid #ccc;
+    margin: 1em 0;
+    padding: 0; 
+}
+
+.side-nav-link {
+font-size: 18px;
+display:inline;
+
+}
+
+.profile-info {
+color:white;
+text-align: center;
+}
+.profile {
+    margin:20px;
+}
+
+.profile-icon {
+    font-size:100px;
+    text-align: center;
+    padding: 10px 20px;
+}
+.dashboard-content {
+    position:absolute;
+    padding-top:60px; 
+    top:0px;
+    left:200px;
+  width:85.95%;
+    border-spacing:50px 20px;
+    background-color:#464856;
+min-height:100%;
+}
+.material-icons {
+     position: relative;
+  top: 6px;
+
+}
+
+#logo {
+  margin-left:35px;
+  margin-top:3px;
+}
+.filter {
+   
+    height:100px;
+    
+}
+
+#my-cars {
+    padding-top:10px;
+    padding-left:20px;
+}
+.car-info {
+     background-color:#FAF9FA;
+
+     background-position: 9px 0px;
+     background-repeat: no-repeat;
+    
+     border-radius: 6px;
+     line-height: 18px;
+     overflow: hidden;
+    padding: 30px 30px;
+     margin:20px;
+     height:150px;
+     width:350px;
+       display:inline-block;
+        border:solid 2px #606060;
+        text-align:center;
+        border: solid 1px red;  
+}
+.car-details {
+      color:black;
+      text-align:center;
+   
+}
+
+.car-name {
+      color:black;
+      text-align:center;
+          font-weight:700;
+}
+
+.car-document {
+    box-shadow:inset 0px 1px 0px 0px #fff6af;
+
+	background:linear-gradient(to bottom, #FAF9FA 5%, #ffab23 100%);
+	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffec64', endColorstr='#ffab23',GradientType=0);
+	background-color:#a88a05;
+
+	border-radius:6px;
+	border:1px solid #ffaa22;
+	display:inline-block;
+	cursor:pointer;
+	color:#333333;
+
+
+	text-decoration:none;
+	text-shadow:0px 1px 0px #ffee66;
+    margin:5px;
+    padding:8px 5px;
+}
+
+.car-image {
+     height:100px;
+}
+
+.transction-buttons {
+  box-shadow:inset 0px 1px 0px 0px #fff6af;
+
+	background:linear-gradient(to bottom, #FAF9FA 5%, #ffab23 100%);
+	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffec64', endColorstr='#ffab23',GradientType=0);
+	background-color:#a88a05;
+
+	border-radius:6px;
+	border:1px solid #ffaa22;
+	display:inline-block;
+	cursor:pointer;
+	color:#333333;
+
+
+	text-decoration:none;
+	text-shadow:0px 1px 0px #ffee66;
+
+padding:5px 10px;
+margin:20px 50px;
+}
+.close-sale {
+  color: #aaaaaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+   
+}
+
+.close-sale:hover,
+.close-sale:focus {
+  color: #000;
+  text-decoration: none;
+  cursor: pointer;
+}
+#create-inspection-document {
+
+ display:none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 20; /* Sit on top */
+  padding-top: 100px; /* Location of the box */
+  left: 100px;
+  top: 0;
+  width:100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgb(0,0,0); /* Fallback color */
+  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+
+}
+
+/* Modal Content */
+.modal-content {
+  background-color: #202020;
+  margin: auto;
+  padding: 20px;
+  border: 1px solid #888;
+  width: 80%;
+}
+</style>
+</head>
+<body>
+
+<div class="top-nav">
+  <img id="logo" src="/images/logo.jpg" height="40px"></img>
+    
+<h6 style="cursor:pointer"onclick="logout()" class="nav-link">Logout</h6>  
+</div>
+
+<div id="mySidenav" class="sidenav">
+<div class="profile">
+<i class="material-icons profile-icon">account_circle</i>
+   <h6 class="profile-info">Logged In As: <br><b><p style="margin:5px" id="username"></p></b></h6>
+</div>
+<hr>
+</div>
+
+<div class="dashboard-content">
+    <div class="filter">
+      
+    </div>
+    <hr style="margin:0px 50px">
+
+
+<div id="my-cars">
+  
+
+
+
+</div>
+
+ 
+    </div>
+  <div id="create-inspection-document">
+
+  <div class="modal-content">
+    <span class="close-sale"><h3 id="createTitle" style="color:#a88a05;display:inline"></h3>&nbsp;&times;</span>
+    
+   
+    <input style="color:black;display:none" type="text" id="carPlateNumberSale" name="carPlateNumberSale" />
+    Inspection Document ID:<input style="color:black;" type="text" id="inspectionDocumentId" name="inspectionDocumentId" />
+Condition (max 10): <input style="color:black;" type="number" id="conditionRating" name="conditionRating" />
+   Date Inspected:<input style="color:black;" type="date" id="dateInspected" name="dateInspected" />
+<br>
+   <input style="color:black;" type="submit" value="Create" onclick="createDocument()"/>
+ 
+  </div>
+
+</div>
+    <script type="text/javascript">
+
+    document.getElementById('username').innerHTML = localStorage.username;
+ 
+function logout() {
+ localStorage.removeItem('username');
+ 
+                
+                      $.ajax({
+    method: "POST",
+            url: "/logout",
+
+        
+        }).done(function (data) {
+          console.log("DONE");
+          
+          window.location.replace("/login");
+            }).fail(function (error) {
+   console.log(error.responseText)
+  })
+  }
+
+function createDocument(){
+  
+  let currentUser;
+   const carPlateNumber = $('#carPlateNumberSale').val();
+
+var car = "org.nus.carnetwork.Car#" + carPlateNumber;
+      const inspectionDocumentId = $('#inspectionDocumentId').val();
+       const conditionRating = $('#conditionRating').val();
+              const dateInspected = $('#dateInspected').val();
+
+    console.log(conditionRating);
+
+        
+            $.ajax({
+                method: "POST",
+                url: "/" +localStorage.username + "/api/org.nus.carnetwork.InspectionDocument",
+              
+
+               data: {
+               "$class": "org.nus.carnetwork.InspectionDocument",
+                "car": car,
+                "inspectionDocumentId": inspectionDocumentId,
+                "dateInspected": dateInspected,
+   "conditionRating": conditionRating,
+
+                } ,
+                async: false,
+				//success: updatePage,
+				//error:  error
+            }).done(function (msg) {
+              console.log("HELLO");
+              $.ajax({
+                method: "POST",
+                url: "/" +localStorage.username + "/api/org.nus.carnetwork.UpdateCarWithInspection",
+              
+
+               data: {
+               "$class": "org.nus.carnetwork.UpdateCarWithInspection",
+                "carPlateNumber": carPlateNumber,
+                "inspectionDocumentId": inspectionDocumentId,
+             
+
+                } ,
+                async: false,
+				//success: updatePage,
+				//error:  error
+            }).done(function (msg) {
+              console.log("FINSIH");
+               location.reload();
+            })
+               
+            }).fail(function (error) {
+              
+         console.log(error);
+            })
+}
+
+    $(document).ready(function () {
+
+        let myCars = [];
+        $.ajax({
+            url: "/hlf/api/org.nus.carnetwork.Car"
+        }).done(function (data) {
+            data.forEach(function (car,i) {
+                myCars.push(car);
+            });
+              $('#my-cars').html(function() {
+      
+var output = '';
+           
+             console.log(myCars[0]); 
+            	for (var i = 0; i < myCars.length; i++) {
+        
+       output += "<div class=\"car-info\">"; 
+        output +=   "<h6 class=\"car-name\">Car Plate Number: " +myCars[i].carPlateNumber+ "</h6>";
+        output +=   "<h6 class=\"car-name\">Owner NRIC: " +myCars[i].owner.substring(35)+ "</h6>";
+          output += "<button onclick=\"openModal('" +myCars[i].carPlateNumber+"')\" class=\"car-document\" style=\"color:black\">Create Inspection Document </button>";
+
+               output += "</div>";
+     
+              }
+             // console.log(output);
+              return output;
+                    })
+        });
+
+
+                }
+            
+        );
+    var createInspectionDocBtn = document.getElementById('create-inspection-doc-btn');
+    var createInspectionDocModal = document.getElementById('create-inspection-document');
+
+function openModal(carPlateNumber){
+  createInspectionDocModal.style.display = "block";
+   document.getElementById('carPlateNumberSale').value = carPlateNumber;
+      document.getElementById('createTitle').innerHTML = "Create Insurance Document for: "+carPlateNumber;
+}
+window.onclick = function(event) {
+  if (event.target == createInspectionDocModal) {
+    createInspectionDocModal.style.display = "none";
+  }
+}
+</script>
+    </body>
+    </html>

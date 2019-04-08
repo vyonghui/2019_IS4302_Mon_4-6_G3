@@ -1,20 +1,605 @@
-<h1 class="text-center mb-3">{{title}}</h1>
-<form action="/api/members" method="POST" class="mb-4">
-  <div class="form-group">
-    <label for="name">Name</label>
-    <input type="text" name="name" class="form-control">
-  </div>
-  <div class="form-group">
-    <label for="email">Email</label>
-    <input type="email" name="email" class="form-control">
-  </div>
-  <input type="submit" value="Add Member" class="btn btn-primary btn-block">
-</form>
-<h4>Members</h4>
-<ul class="list-group">
-  {{#each members}}
-  <li class="list-group-item">{{this.name}}: {{this.email}}</li>
-  {{/each}}
-</ul>
+<!DOCTYPE html>
+<html>
+<head>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet">
+      <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Open+Sans" />
+      <!--jquery-->
+<script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.js"></script>
 
-<a href="/api/members" class="btn btn-light mt-4">Visit API</a>
+<!--datatables-->
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.16/css/jquery.dataTables.min.css">
+<script type="text/javascript" src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
+
+<style>
+    * {
+       font-family: "Open Sans";
+        color:white; }
+ .top-nav {
+height:60px;
+background-color:#202020  ;
+z-index:10;
+  position: absolute;
+  top:0;
+  left:0;
+  width:100%;
+  padding:10px;
+ }
+
+
+.nav-link {
+    float:right;
+    color:white;
+    padding:3px 30px ;
+}
+.sidenav {
+  height: 100%;
+  width: 200px;
+  position: fixed;
+  z-index: -1;
+padding:10px;
+  top: 50px;
+  left: 0;
+  background-color: #111;
+  overflow-x: hidden;
+  transition: 0.5s;
+  font-size:1px
+}
+
+.sidenav a {
+  padding: 8px 8px 8px 20px;
+  text-decoration: none;
+  font-size: 10px;
+  color: #818181;
+  display: block;
+  transition: 0.3s;
+}
+
+.sidenav a:hover {
+  color: #f1f1f1;
+}
+
+.sidenav .closebtn {
+  position: absolute;
+  top: 0;
+  right: 25px;
+  font-size: 36px;
+  margin-left: 50px;
+}
+
+@media screen and (max-height: 450px) {
+  .sidenav {padding-top: 15px;}
+  .sidenav a {font-size: 18px;}
+}
+.left-nav-open {
+    font-size:30px;
+    cursor:pointer;
+    color:white;
+    font-size: 20px;
+    margin-left:10px;
+  
+}
+
+hr {
+    display: block;
+    height: 1px;
+    border: 0;
+    border-top: 1px solid #ccc;
+    margin: 1em 0;
+    padding: 0; 
+}
+
+.side-nav-link {
+font-size: 18px;
+display:inline;
+
+}
+
+.profile-info {
+color:white;
+text-align: center;
+}
+.profile {
+    margin:20px;
+    height:160px;
+}
+
+.profile-icon {
+    font-size:100px;
+    text-align: center;
+    padding: 10px 20px;
+}
+.dashboard-content {
+    position:absolute;
+    padding-top:65px; 
+    top:0px;
+    left:200px;
+  height:100%;
+    border-spacing:50px 20px;
+    background-color:#464856
+}
+.account-balance {
+     -moz-border-radius: 6px;
+     -webkit-border-radius: 6px;
+    background-color:#32343E;
+     
+     background-position: 9px 0px;
+     background-repeat: no-repeat;
+
+     border-radius: 6px;
+     line-height: 30px;
+     overflow: hidden;
+     padding: 15px 15px;
+     margin:20px;
+     height:50px;
+     width:600px;
+       display: table-cell;
+ border:solid 1px #606060;
+       
+  
+    
+    
+   
+    
+}
+
+.car-count {
+     -moz-border-radius: 6px;
+     -webkit-border-radius: 6px;
+  
+     background-image: url(../Images/icons/Pencil-48.png);
+     background-position: 9px 0px;
+     background-repeat: no-repeat;
+
+     border-radius: 6px;
+      line-height: 30px;
+     overflow: hidden;
+   padding: 15px 15px;
+     margin:20px;
+   height:50px;
+     width:600px;
+       display: table-cell;
+     background-color:#32343E;
+    border:solid 1px #606060;
+}
+
+.pending-documents {
+     -moz-border-radius: 6px;
+     -webkit-border-radius: 6px;
+  
+     background-image: url(../Images/icons/Pencil-48.png);
+     background-position: 9px 0px;
+     background-repeat: no-repeat;
+  
+     border-radius: 6px;
+     line-height: 30px;
+     overflow: hidden;
+    padding: 15px 15px;
+     margin:20px;
+      height:50px;
+     width:600px;
+       display: table-cell;
+         background-color:#32343E;
+    border:solid 1px #606060;
+    
+   
+}
+.box-info {
+    display:inline;
+}
+
+.sidenav-element {
+    
+}
+
+#my-listings {
+ -moz-border-radius: 6px;
+     -webkit-border-radius: 6px;
+     background-color:#FAF9FA;
+     background-image: url(../Images/icons/Pencil-48.png);
+     background-position: 9px 0px;
+     background-repeat: no-repeat;
+    
+     border-radius: 6px;
+     line-height: 18px;
+     overflow: hidden;
+    padding: 15px 15px;
+     margin:20px;
+      height:400px;
+     width:600px;
+       display: table-cell;
+        border:solid 2px #606060;
+    
+}
+
+#user-listings {
+ -moz-border-radius: 6px;
+     -webkit-border-radius: 6px;
+   background-color:#FAF9FA;
+     background-image: url(../Images/icons/Pencil-48.png);
+     background-position: 9px 0px;
+     background-repeat: no-repeat;
+     border-radius: 6px;
+     line-height: 18px;
+     overflow: hidden;
+    padding: 15px 15px;
+     margin:20px;
+       height:400px;
+     width:600px;
+       display: table-cell;
+           border:solid 2px #606060;
+    
+}
+
+.material-icons {
+     position: relative;
+  top: 6px;
+
+}
+
+table {
+color:white;
+  text-align: center;
+font-size:12px;
+  border-collapse: collapse;
+  width: 100%;
+  background-color:#202020;
+ 
+}
+th {
+ 
+}
+td, th {
+ 
+ 
+  padding: 8px;
+   border-bottom: 1px solid #aaaaaa;
+}
+
+tr:nth-child(even) {
+   
+background-color:#a88a05;
+}
+
+#logo {
+  margin-left:35px;
+  margin-top:3px;
+}
+.modal-popup{
+  display:none;
+  width:100%;
+  height:100%;
+  position:fixed;
+  left:0;
+  top:0;
+  background-color:rgb(255,255,255,50%);
+ 
+  z-index:9999;
+}
+        .loader {
+  position: relative;
+  text-align: center;
+  margin: 300px 650px;
+  z-index: 9999;
+  display: block;
+  width: 80px;
+  height: 80px;
+  border: 10px solid rgba(0, 0, 0, .3);
+  border-radius: 50%;
+  border-top-color: #000;
+  animation: spin 1s ease-in-out infinite;
+  -webkit-animation: spin 1s ease-in-out infinite;
+}
+
+@keyframes spin {
+  to {
+    -webkit-transform: rotate(360deg);
+  }
+}
+
+@-webkit-keyframes spin {
+  to {
+    -webkit-transform: rotate(360deg);
+  }
+}
+
+
+/** MODAL STYLING **/
+
+.modal-content {
+  border-radius: 0px;
+  box-shadow: 0 0 20px 8px rgba(0, 0, 0, 0.7);
+}
+
+.modal-backdrop.show {
+  opacity: 0.75;
+}
+
+.loader-txt {
+  p {
+    font-size: 13px;
+    color: #666;
+    small {
+      font-size: 11.5px;
+      color: #999;
+    }
+  }
+}
+
+#output {
+  padding: 25px 15px;
+  background: #222;
+  border: 1px solid #222;
+  max-width: 350px;
+  margin: 35px auto;
+  font-family: 'Roboto', sans-serif !important;
+  p.subtle {
+    color: #555;
+    font-style: italic;
+    font-family: 'Roboto', sans-serif !important;
+  }
+  h4 {
+    font-weight: 300 !important;
+    font-size: 1.1em;
+    font-family: 'Roboto', sans-serif !important;
+  }
+  p {
+    font-family: 'Roboto', sans-serif !important;
+    font-size: 0.9em;
+    b {
+      text-transform: uppercase;
+      text-decoration: underline;
+    }
+  }
+}
+
+</style>
+</head>
+<body>
+
+<div class="top-nav">
+  <img id="logo" src="images/logo.jpg" height="40px"></img>
+    <h6 style="cursor:pointer"onclick="logout()" class="nav-link">Logout</h6>
+<a href="/dashboard" class="nav-link">MyDashboard</a>
+</div>
+
+<div id="mySidenav" class="sidenav">
+<div class="profile">
+<i class="material-icons profile-icon">account_circle</i>
+    <h6 class="profile-info">Logged In As: <br><b><p style="margin:5px" id="username"></p></b></h6>
+   
+</div>
+<hr>
+ <div class="sidenav-element"> <a href="cars"><i class="material-icons">time_to_leave</i> <p class="side-nav-link">&nbsp;&nbsp;Cars</p></a>
+  </div><hr>
+  <div class="sidenav-element"><a href="coe"> <i class="material-icons">bookmarks</i> <p class="side-nav-link">&nbsp;&nbsp;COE</p></a>
+  </div><hr>  
+  <div class="sidenav-element"><a href="insurance"><i class="material-icons">description</i> <p class="side-nav-link">&nbsp;&nbsp;Insurance</p> </a>
+  </div><hr>
+
+</div>
+
+<div class="dashboard-content">
+
+<div class="account-information">
+
+<div class="account-balance"><i class="material-icons">attach_money</i><h6 class="box-info">&nbsp;Current Balance: <p style="display:inline;" id="balance">  </p></h6></div>
+    
+<div class="car-count"><i class="material-icons">time_to_leave</i><h6 class="box-info">&nbsp;&nbsp;Car Count: <p style="display:inline;"  id="carCount"> <b></b></p></h6></div>
+<div class="pending-documents"><i class="material-icons">border_color</i><h6 class="box-info">&nbsp;&nbsp;Pending: &nbsp;&nbsp;&nbsp;&nbsp; <p style="display:inline;"  id="pendingDocs"> <b></b></p></h6></div>
+</div>
+
+
+<div id="user-listings">
+ 
+    
+</div>
+
+<div id="my-listings">
+
+   
+    
+  
+
+    
+  
+</ul>
+    
+
+</div>
+</div>
+  <div class="modal-popup " id="loadMe" tabindex="-1">
+
+        <div class="loader"></div>
+        <div clas="loader-txt">
+         
+        </div>
+    
+</div> 
+<script>
+
+  function logout() {
+ localStorage.removeItem('username');
+ 
+                
+                      $.ajax({
+    method: "POST",
+            url: "/logout",
+
+        
+        }).done(function (data) {
+          console.log("DONE");
+          
+          window.location.replace("/login");
+            }).fail(function (error) {
+   console.log(error.responseText)
+  })
+  }
+      $(document).ready(function () {
+            var modal = document.getElementById('loadMe');
+       
+     modal.style.backdrop = ('static');
+      modal.style.keyboard = ('false');
+  modal.style.display = ('block');
+        let carCount =0;
+let pendingCOECount = 0;
+let pendingInsuranceCount = 0;
+var currentUserLogin;
+document.getElementById('username').innerHTML = localStorage.username;
+            $.ajax({
+            url: "/"+ localStorage.username + "/api/system/ping",
+            async: false,
+            success: (function (currentUser) {
+            console.log(currentUser)
+            currentUserLogin = currentUser.participant;
+                
+                        $.ajax({
+            url: "/"+ localStorage.username + "/api/system/identities"
+        }).done(function (data) {
+         
+             data.forEach(function (person,i) {
+
+              if (currentUser.participant.substring(26) == person.participant.substring(35)) {
+                
+             $.ajax({
+            url: "/hlf/api/org.nus.carnetwork.Person/"+ currentUser.participant.substring(26),
+        }).done(function (data) {
+           document.getElementById('balance').innerHTML = data.wallet;
+         
+        })
+              }
+            }); 
+        })
+            }),
+        })
+ $.ajax({
+            url: "/"+ localStorage.username + "/api/org.nus.carnetwork.Car"
+        }).done(function (data) {
+           carCount = data.length;
+           document.getElementById('carCount').innerHTML = carCount;
+         
+        });
+
+         $.ajax({
+            url: "/"+ localStorage.username + "/api/org.nus.carnetwork.COE"
+        }).done(function (data) {
+            
+           for (var i = 0;i < data.length; i++) {
+              
+             if (data[i].documentStatus == 'PENDING') {
+               pendingCOECount++;
+               console.log(pendingCOECount)
+             }
+           }
+         
+           $.ajax({
+            url: "/"+ localStorage.username + "/api/org.nus.carnetwork.InsuranceDocument"
+        }).done(function (data) {
+           console.log(data);
+           for (var i = 0;i < data.length; i++) {
+         
+             if (data[i].documentStatus == 'PENDING') {
+               pendingInsuranceCount++;
+             }
+           }
+        
+          document.getElementById('pendingDocs').innerHTML = "COE: " + pendingCOECount + " | Insurance: " + pendingInsuranceCount;
+      
+        });
+         });
+
+        
+       
+ let userListings = [];
+        var output2 = '';
+        $.ajax({
+            url: "/"+ localStorage.username + "/api/org.nus.carnetwork.CarListing"
+        }).done(function (data) {
+            data.forEach(function (listing,i) {
+                if(listing.seller.substring(35) != currentUserLogin.substring(26) && listing.state==="FOR_SALE"){
+                userListings.push(listing);
+              }
+            });
+
+            var length;
+            if (userListings.length <= 5) {
+              length = userListings.length;
+            }
+            else {
+              length = 5;
+            }
+                      $('#user-listings').html(function() {
+      
+output2 += '<h6 class="box-info"style="color:black"><i class="material-icons"style="color:black;display:inline">list</i> &nbsp;Cars On Sale: </h6><a href="/listings" style=""><h6 style=\"display:inline;color:blue;float:right\">See All</h6></a>'; 
+ output2 +=  "<hr><table style='color:black'>    <th>Car Plate</th>    <th>Price</th>    <th>Seller</th>      <th>View Listing</th>";
+           
+             
+            	for (var i = 0; i < length; i++) {
+                  output2 +=    '<tr><td>';
+                  output2 += userListings[i].car.substring(32);
+                  output2 += '</td>';
+                   output2 +=    '<td>';
+                  output2 += userListings[i].reservePrice;
+                  output2 += '</td>';
+                   output2 +=    '<td>';
+                  output2 += userListings[i].seller.substring(35);
+                  output2 += '</td>';
+
+  output2+= '<td><a href="/listings/'+ userListings[i].listingId+'"><button style="color:black">View </button> </a></td> </tr>';
+  
+   
+      
+
+     
+              }
+              output2+= '</table>'
+              
+              return output2;
+                    })
+        });
+
+  let myListings = [];
+        var output = '';
+        $.ajax({
+            url: "/"+ localStorage.username + "/api/org.nus.carnetwork.CarListing"
+        }).done(function (data) {
+            data.forEach(function (listing,i) {
+                if(listing.seller.substring(35) == currentUserLogin.substring(26) && listing.state==="FOR_SALE"){
+                myListings.push(listing);
+            }
+            });
+
+              $('#my-listings').html(function() {
+      
+output += '<h6 class="box-info"style="color:black;display:inline"><i class="material-icons"style="color:black">list</i> &nbsp;My Listings: </h6><a href="/mylistings" style=""><h6 style=\"display:inline;color:blue;float:right\">See All</h6></a>'; 
+ output +=  "<hr><table style='color:black'>    <th>Car Plate</th>    <th>Price</th>    <th>Seller</th>      <th>View Listing</th>";
+           
+             
+            	for (var i = 0; i < myListings.length; i++) {
+                  output +=    '<tr><td>';
+                  output += myListings[i].car.substring(32);
+                  output += '</td>';
+                   output +=    '<td>';
+                  output += myListings[i].reservePrice;
+                  output += '</td>';
+                   output +=    '<td>';
+                  output += myListings[i].seller.substring(35);
+                  output += '</td>';
+
+  output+= '<td><a href="/mylistings/'+ myListings[i].listingId+'"><button style="color:black">View </button> </a></td> </tr>';
+  
+   
+      
+
+     
+              }
+              output+= '</table>'
+               modal.style.display = ('none');
+              return output;
+                    })
+
+        })     
+                })
+</script>
+</body>
+</html>

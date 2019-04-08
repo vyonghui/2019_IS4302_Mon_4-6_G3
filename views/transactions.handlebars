@@ -1,0 +1,622 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet">
+       <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Open+Sans" />
+        <!--jquery-->
+<script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.js"></script>
+<!--datatables-->
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.16/css/jquery.dataTables.min.css">
+<script type="text/javascript" src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
+<style>
+ * {
+       font-family: "Open Sans";
+        color:white;
+         }
+ .top-nav {
+height:60px;
+background-color:#202020  ;
+z-index:10;
+  position: absolute;
+  top:0;
+  left:0;
+  width:100%;
+  padding:10px;
+ }
+
+
+.nav-link {
+    float:right;
+    color:white;
+    padding:3px 30px ;
+}
+.sidenav {
+  height: 100%;
+  width: 200px;
+  position: fixed;
+  z-index: 0;
+padding:10px;
+  top: 50px;
+  left: 0;
+  background-color: #111;
+  overflow-x: hidden;
+  transition: 0.5s;
+  font-size:1px
+}
+
+.sidenav a {
+  padding: 8px 8px 8px 20px;
+  text-decoration: none;
+  font-size: 10px;
+  color: #818181;
+  display: block;
+  transition: 0.3s;
+}
+
+.sidenav a:hover {
+  color: #f1f1f1;
+}
+
+.sidenav .closebtn {
+  position: absolute;
+  top: 0;
+  right: 25px;
+  font-size: 36px;
+  margin-left: 50px;
+}
+
+@media screen and (max-height: 450px) {
+  .sidenav {padding-top: 15px;}
+  .sidenav a {font-size: 18px;}
+}
+.left-nav-open {
+    font-size:30px;
+    cursor:pointer;
+    color:white;
+    font-size: 20px;
+    margin-left:10px;
+  
+}
+
+hr {
+    display: block;
+    height: 1px;
+    border: 0;
+    border-top: 1px solid #ccc;
+    margin: 1em 0;
+    padding: 0; 
+}
+
+.side-nav-link {
+font-size: 18px;
+display:inline;
+
+}
+
+.profile-info {
+color:white;
+text-align: center;
+}
+.profile {
+    margin:20px;
+}
+
+.profile-icon {
+    font-size:100px;
+    text-align: center;
+    padding: 10px 20px;
+}
+.dashboard-content {
+    position:absolute;
+    padding-top:65px; 
+    top:0px;
+    left:0px;
+    z-index:-1;
+    padding-left:200px;
+  height:100%;
+  width:100%;
+    border-spacing:50px 20px;
+    background-color:#464856
+}
+.account-balance {
+     -moz-border-radius: 6px;
+     -webkit-border-radius: 6px;
+    background-color:#32343E;
+     
+     background-position: 9px 0px;
+     background-repeat: no-repeat;
+
+     border-radius: 6px;
+     line-height: 30px;
+     overflow: hidden;
+     padding: 15px 15px;
+     margin:20px;
+     height:50px;
+     width:600px;
+       display: table-cell;
+ border:solid 1px #606060;
+       
+  
+    
+    
+   
+    
+}
+
+.car-count {
+     -moz-border-radius: 6px;
+     -webkit-border-radius: 6px;
+  
+     background-image: url(../Images/icons/Pencil-48.png);
+     background-position: 9px 0px;
+     background-repeat: no-repeat;
+
+     border-radius: 6px;
+      line-height: 30px;
+     overflow: hidden;
+   padding: 15px 15px;
+     margin:20px;
+   height:50px;
+     width:600px;
+       display: table-cell;
+     background-color:#32343E;
+    border:solid 1px #606060;
+}
+
+.pending-documents {
+     -moz-border-radius: 6px;
+     -webkit-border-radius: 6px;
+  
+     background-image: url(../Images/icons/Pencil-48.png);
+     background-position: 9px 0px;
+     background-repeat: no-repeat;
+  
+     border-radius: 6px;
+     line-height: 30px;
+     overflow: hidden;
+    padding: 15px 15px;
+     margin:20px;
+      height:50px;
+     width:600px;
+       display: table-cell;
+         background-color:#32343E;
+    border:solid 1px #606060;
+   
+}
+.box-info {
+    display:inline;
+}
+
+.sidenav-element {
+    
+}
+
+.my-listings {
+ -moz-border-radius: 6px;
+     -webkit-border-radius: 6px;
+     background-color:#FAF9FA;
+     background-image: url(../Images/icons/Pencil-48.png);
+     background-position: 9px 0px;
+     background-repeat: no-repeat;
+    
+     border-radius: 6px;
+     line-height: 18px;
+     overflow: hidden;
+    padding: 15px 15px;
+     margin:20px;
+      height:400px;
+     width:600px;
+       display: table-cell;
+        border:solid 2px #606060;
+    
+}
+
+.user-listings {
+ -moz-border-radius: 6px;
+     -webkit-border-radius: 6px;
+   background-color:#FAF9FA;
+     background-image: url(../Images/icons/Pencil-48.png);
+     background-position: 9px 0px;
+     background-repeat: no-repeat;
+     border-radius: 6px;
+     line-height: 18px;
+     overflow: hidden;
+    padding: 15px 15px;
+     margin:20px;
+       height:400px;
+     width:600px;
+       display: table-cell;
+           border:solid 2px #606060;
+    
+}
+
+.material-icons {
+     position: relative;
+  top: 6px;
+
+}
+
+table {
+color:white;
+  text-align: center;
+font-size:12px;
+  border-collapse: collapse;
+  width: 100%;
+  background-color:#202020;
+ 
+}
+th {
+ 
+}
+td, th {
+ 
+ 
+  padding: 8px;
+   border-bottom: 1px solid #aaaaaa;
+}
+
+tr:nth-child(even) {
+   
+background-color:#a88a05;
+}
+
+#logo {
+  margin-left:35px;
+  margin-top:3px;
+}
+
+.grid-container {
+  display: grid;
+  grid-template-columns: auto auto auto;
+ 
+  padding: 20px;
+}
+.grid-item {
+ margin:20px;
+  border: 1px solid rgba(0, 0, 0, 0.8);
+  padding:30px;
+  font-size: 30px;
+  text-align: center;
+}
+
+.transction-buttons {
+  box-shadow:inset 0px 1px 0px 0px #fff6af;
+
+	background:linear-gradient(to bottom, #FAF9FA 5%, #ffab23 100%);
+	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffec64', endColorstr='#ffab23',GradientType=0);
+	background-color:#a88a05;
+
+	border-radius:6px;
+	border:1px solid #ffaa22;
+	display:inline-block;
+	cursor:pointer;
+	color:#333333;
+
+
+	text-decoration:none;
+	text-shadow:0px 1px 0px #ffee66;
+}
+
+
+/* The Modal (background) */
+.modal {
+
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  padding-top: 100px; /* Location of the box */
+  left: 100px;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgb(0,0,0); /* Fallback color */
+  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+
+}
+
+/* Modal Content */
+.modal-content {
+  background-color: #202020;
+  margin: auto;
+  padding: 20px;
+  border: 1px solid #888;
+  width: 80%;
+}
+
+/* The Close Button */
+.close {
+  color: #aaaaaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+   
+}
+
+.close:hover,
+.close:focus {
+  color: #000;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.close-sale {
+  color: #aaaaaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+   
+}
+
+.close-sale:hover,
+.close-sale:focus {
+  color: #000;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.select-car , .select-car-sale{
+background-color:#a88a05;
+padding:10px;
+margin-top:20px;
+border-radius:5px;
+
+}
+
+.select-car:hover {
+cursor:pointer;
+background-color:#775500;
+}
+.select-car-sale:hover {
+cursor:pointer;
+background-color:#775500;
+}
+#my-cars{
+
+}
+</style>
+</head>
+<body>
+
+<div class="top-nav">
+   <img id="logo" src="logo.jpg" height="40px"></img>
+    <a href="#Logout" class="nav-link">Logout</a>
+<a href="/dashboard" class="nav-link">MyDashboard</a>
+</div>
+
+<div id="mySidenav" class="sidenav">
+<div class="profile">
+<i class="material-icons profile-icon">account_circle</i>
+    <h6 class="profile-info">Logged In: <br>{{username}}</h6>
+</div>
+<hr>
+ <div class="sidenav-element"> <a href="cars"><i class="material-icons">time_to_leave</i> <p class="side-nav-link">&nbsp;&nbsp;Cars</p></a>
+  </div><hr>
+  <div class="sidenav-element"><a href="coe"> <i class="material-icons">bookmarks</i> <p class="side-nav-link">&nbsp;&nbsp;COE</p></a>
+  </div><hr>
+  <div class="sidenav-element"><a href="insurance"><i class="material-icons">description</i> <p class="side-nav-link">&nbsp;&nbsp;Insurance</p> </a>
+  </div><hr>
+ <div class="sidenav-element"> <a href="views/transactions"><i class="material-icons">list</i> <p class="side-nav-link">&nbsp;&nbsp; Transaction</p></a>
+</div></div>
+
+<div class="dashboard-content">
+    <h3 style="margin-left:50px;margin-top:20px"> Available Transactions:</h3>
+    <div class="grid-container ">
+    {{#each transactions}}
+<div class="grid-item transction-buttons" id={{this.transactionName}}><h6 class="box-info"><b style="color:black;" >{{this.transactionName}}</b></h6></div>
+ {{/each}}
+    </div>
+    <div id="take-trip" class="modal">
+
+  <div class="modal-content">
+    <span class="close"><h3 style="color:#a88a05;display:inline">TakeTrip</h3>&nbsp;&times;</span>
+    
+    <div id="my-cars">
+  
+</div>
+ <form>
+   Distance Travelled: <input style="color:black;" type="text" id="distance" name="distance" />
+    <input style="color:black;display:none" type="text" id="carPlateNumber" name="carPlateNumber" />
+   <input style="color:black;" type="submit" value="Update" onclick="takeTrip()"/>
+ </form>
+  </div>
+
+</div>
+  
+      <div id="put-car-on-sale" class="modal">
+
+  <div class="modal-content">
+    <span class="close-sale"><h3 style="color:#a88a05;display:inline">Put Car On Sale</h3>&nbsp;&times;</span>
+    
+    <div id="my-cars-sale">
+ 
+</div>
+    <input style="color:black;" type="text" id="carPlateNumberSale" name="carPlateNumberSale" />
+Minimum Price: <input style="color:black;" type="number" id="price" name="price" />
+   Description: <textarea style="color:black;"  rows="5" col="10"></textarea>
+<br>
+   <input style="color:black;" type="submit" value="Create Listing" onclick="putCarOnSale()"/>
+ 
+  </div>
+
+</div>
+
+    
+
+</div>
+
+<script>
+  //take trip
+  var takeTripModal = document.getElementById('take-trip');
+var takeTripBtn = document.getElementById("TakeTrip");
+var takeTripSpan = document.getElementsByClassName("close")[0];
+takeTripBtn.onclick = function() {
+  takeTripModal.style.display = "block";
+}
+takeTripSpan.onclick = function() {
+  takeTripModal.style.display = "none";
+}
+
+//putcaronsale
+  var putCarOnSaleModal = document.getElementById('put-car-on-sale');
+var putCarOnSaleBtn = document.getElementById("PutCarOnSale");
+var putCarOnSaleSpan = document.getElementsByClassName("close-sale")[0];
+putCarOnSaleBtn.onclick = function() {
+  putCarOnSaleModal.style.display = "block";
+}
+putCarOnSaleSpan.onclick = function() {
+  putCarOnSaleModal.style.display = "none";
+}
+
+function selectCar(carPlateNumber) {
+  document.getElementById('carPlateNumber').value = carPlateNumber;
+  var array = document.getElementsByClassName('select-car');
+  
+  for (var i =0; i < array.length;i++) {
+  
+    array[i].innerHTML= "Car Plate Number: " + array[i].id;
+    array[i].style.backgroundColor = '#a88a05';
+  }
+   document.getElementById(carPlateNumber).innerHTML += '<p style="float:right">&#9745</p>';
+    document.getElementById(carPlateNumber).style.backgroundColor = '#775500';
+}
+
+function selectCarForSale(carPlateNumber) {
+ document.getElementById('carPlateNumberSale').value = carPlateNumber;
+  
+
+}
+function takeTrip(){
+
+
+  let currentUser;
+   const carPlateNumber = $('#carPlateNumber').val();
+    const distance = $('#distance').val();
+        $.ajax({
+            url: "/hlf/api/system/ping",
+            async: false,
+            success: (function (data) {
+                currentUser = data.participant;
+            }),
+        })
+
+        var car = "org.nus.carnetwork.Car#" + carPlateNumber;
+            $.ajax({
+                method: "POST",
+                url: "/hlf/api/org.nus.carnetwork.TakeTrip",
+              
+
+               data: {
+               "$class": "org.nus.carnetwork.TakeTrip",
+                "car": car,
+                "distance": distance,
+     "timestamp": new Date(),
+
+                } 
+                
+				//success: updatePage,
+				//error:  error
+            }).done(function (msg) {
+              
+                alert(msg)
+            }).fail(function (error) {
+              
+               alert(error)
+            })
+       
+    }
+
+    function putCarOnSale(){
+
+
+  let currentUser;
+   const carPlateNumber = $('#carPlateNumber-Sale').val();
+      const price = $('#price').val();
+       const description = $('#description').val();
+        $.ajax({
+            url: "/hlf/api/system/ping",
+            async: false,
+            success: (function (data) {
+                currentUser = data.participant;
+            }),
+        })
+
+        var car = "org.nus.carnetwork.Car#" + carPlateNumber;
+            $.ajax({
+                method: "POST",
+                url: "/hlf/api/org.nus.carnetwork.TakeTrip",
+              
+
+               data: {
+               "$class": "org.nus.carnetwork.TakeTrip",
+                "car": car,
+                "price": price,
+                "description": description,
+     "timestamp": new Date(),
+
+                } 
+                
+				//success: updatePage,
+				//error:  error
+            }).done(function (msg) {
+              
+                alert(msg)
+            }).fail(function (error) {
+              
+               alert(error)
+            })
+       
+    }
+
+    
+    $(document).ready(function () {
+
+        let myCars = [];
+        $.ajax({
+            url: "/hlf/api/org.nus.carnetwork.Car"
+        }).done(function (data) {
+            data.forEach(function (car,i) {
+                myCars.push(car);
+            });
+              $('#my-cars').html(function() {
+      
+var output = '';
+           
+            
+            	for (var i = 0; i < myCars.length; i++) {
+        
+       output += "<div id=\""+myCars[i].carPlateNumber+"\" class=\"select-car\" onclick=\"selectCar(\'" +myCars[i].carPlateNumber+"\')\">"; 
+        output +=   "<h6 style=\"display:inline\" class=\"car-name\">Car Plate Number: " +myCars[i].carPlateNumber+ "</h6>";
+
+            output += "</div>";
+     
+              }
+              output+="<hr>";
+              console.log(output);
+              return output;
+                    })
+                        $('#my-cars-sale').html(function() {
+      
+var output = '';
+           
+            
+            	for (var i = 0; i < myCars.length; i++) {
+        
+       output += "<div class=\"select-car-sale\" onclick=\"selectCarForSale(\'" +myCars[i].carPlateNumber+"\')\">"; 
+        output +=   "<h6 style=\"display:inline\" class=\"car-name\">Car Plate Number: " +myCars[i].carPlateNumber+ "</h6>";
+
+            output += "</div>";
+     
+              }
+              output+="<hr>";
+              console.log(output);
+              return output;
+                    })
+        });
+
+
+                })
+</script>
+</body>
+</html>

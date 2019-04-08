@@ -1,0 +1,475 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet">
+      <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Open+Sans" />
+      
+<!--jquery-->
+<script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.js"></script>
+
+<!--datatables-->
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.16/css/jquery.dataTables.min.css">
+<script type="text/javascript" src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
+
+<style>
+    * {
+       font-family: "Open Sans";
+        color:white; }
+ .top-nav {
+height:60px;
+background-color:#202020  ;
+z-index:10;
+  position: fixed;
+  top:0;
+  left:0;
+  width:100%;
+  padding:10px;
+ }
+
+
+.nav-link {
+    float:right;
+    color:white;
+    padding:3px 30px ;
+}
+.sidenav {
+  height: 100%;
+  width: 200px;
+  position: fixed;
+  z-index: -1;
+padding:10px;
+  top: 0px;
+  padding-top:50px;
+  left: 0;
+  background-color: #111;
+  overflow-x: hidden;
+  transition: 0.5s;
+  font-size:1px
+}
+
+.sidenav a {
+  padding: 8px 8px 8px 20px;
+  text-decoration: none;
+  font-size: 10px;
+  color: #818181;
+  display: block;
+  transition: 0.3s;
+}
+
+.sidenav a:hover {
+  color: #f1f1f1;
+}
+
+.sidenav .closebtn {
+  position: absolute;
+  top: 0;
+  right: 25px;
+  font-size: 36px;
+  margin-left: 50px;
+}
+
+@media screen and (max-height: 450px) {
+  .sidenav {padding-top: 15px;}
+  .sidenav a {font-size: 18px;}
+}
+.left-nav-open {
+    font-size:30px;
+    cursor:pointer;
+    color:white;
+    font-size: 20px;
+    margin-left:10px;
+  
+}
+
+hr {
+    display: block;
+    height: 1px;
+    border: 0;
+    border-top: 1px solid #ccc;
+    margin: 1em 0;
+    padding: 0; 
+}
+
+.side-nav-link {
+font-size: 18px;
+display:inline;
+
+}
+
+.profile-info {
+color:white;
+text-align: center;
+}
+.profile {
+    margin:20px;
+}
+
+.profile-icon {
+    font-size:100px;
+    text-align: center;
+    padding: 10px 20px;
+}
+.dashboard-content {
+    position:absolute;
+    padding-top:60px; 
+    top:0px;
+    left:200px;
+  
+    border-spacing:50px 20px;
+    background-color:#464856;
+min-height:100%;
+min-width:85.95%
+}
+.material-icons {
+     position: relative;
+  top: 6px;
+
+}
+
+#logo {
+  margin-left:35px;
+  margin-top:3px;
+}
+.advertisement {
+   
+    
+}
+.image-ads {
+    width:100%;
+    
+    
+}
+#my-cars {
+    padding-top:10px;
+    padding-left:20px;
+}
+.listing-info {
+     background-color:#FAF9FA;
+
+     background-position: 9px 0px;
+     background-repeat: no-repeat;
+    
+     border-radius: 6px;
+     line-height: 18px;
+     overflow: hidden;
+    padding: 50px 30px;
+     margin:55px 80px;
+     height:400px;
+     width:1050px;
+       display:inline-block;
+        border:solid 2px #606060;
+        text-align:center;
+        border: solid 5px #a88a05;  
+}
+.listing-details {
+      color:black;
+      text-align:center;
+   
+}
+
+.car-name {
+      color:black;
+      text-align:center;
+          font-weight:700;
+}
+
+.car-document {
+    box-shadow:inset 0px 1px 0px 0px #fff6af;
+
+	background:linear-gradient(to bottom, #FAF9FA 5%, #ffab23 100%);
+	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffec64', endColorstr='#ffab23',GradientType=0);
+	background-color:#a88a05;
+
+	border-radius:6px;
+	border:1px solid #ffaa22;
+	display:inline-block;
+	cursor:pointer;
+	color:#333333;
+
+
+	text-decoration:none;
+	text-shadow:0px 1px 0px #ffee66;
+    margin:5px;
+    padding:8px 5px;
+}
+
+.car-image {
+     height:100px;
+}
+
+.transction-buttons {
+  box-shadow:inset 0px 1px 0px 0px #fff6af;
+
+	background:linear-gradient(to bottom, #FAF9FA 5%, #ffab23 100%);
+	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffec64', endColorstr='#ffab23',GradientType=0);
+	background-color:#a88a05;
+
+	border-radius:6px;
+	border:1px solid #ffaa22;
+	display:inline-block;
+	cursor:pointer;
+	color:#333333;
+
+
+	text-decoration:none;
+	text-shadow:0px 1px 0px #ffee66;
+
+padding:5px 10px;
+margin:20px 50px;
+}
+.modal {
+
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  padding-top: 100px; /* Location of the box */
+  left: 100px;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgb(0,0,0); /* Fallback color */
+  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+
+}
+
+/* Modal Content */
+.modal-content {
+  background-color: #202020;
+  margin: auto;
+  padding: 20px;
+  border: 1px solid #888;
+  width: 80%;
+}   
+#makeOffer{
+  width: 20%;
+  background-color: #a88a05;
+  color: white;
+  padding: 10px 20px;
+  margin: 8px 0;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+table {
+color:white;
+  text-align: center;
+font-size:12px;
+  border-collapse: collapse;
+  width: 100%;
+  background-color:#202020;
+ border:solid 1px white;
+}
+th {
+ 
+}
+td, th {
+ 
+ 
+  padding: 8px;
+   border-bottom: 1px solid #aaaaaa;
+}
+
+tr:nth-child(even) {
+   
+background-color:#a88a05;
+}
+</style>
+</head>
+<body>
+
+<div class="top-nav">
+  <img id="logo" src="/images/logo.jpg" height="40px"></img>
+   <h6 style="cursor:pointer"onclick="logout()" class="nav-link">Logout</h6>
+<a href="/dashboard" class="nav-link">MyDashboard</a>
+</div>
+
+<div id="mySidenav" class="sidenav">
+<div class="profile">
+<i class="material-icons profile-icon">account_circle</i>
+     <h6 class="profile-info">Logged In As: <br><b><p style="margin:5px" id="username"></p></b></h6>
+</div>
+<hr>
+ <div class="sidenav-element"> <a href="/cars"><i class="material-icons">time_to_leave</i> <p class="side-nav-link">&nbsp;&nbsp;Cars</p></a>
+  </div><hr>
+  <div class="sidenav-element"><a href="/coe"> <i class="material-icons">bookmarks</i> <p class="side-nav-link">&nbsp;&nbsp;COE</p></a>
+  </div><hr>
+  <div class="sidenav-element"><a href="/insurance"><i class="material-icons">description</i> <p class="side-nav-link">&nbsp;&nbsp;Insurance</p> </a>
+  </div><hr>
+</div>
+
+<div class="dashboard-content">
+   
+
+
+<div id="listing-details">
+  
+
+
+
+</div>
+   <div id="offer" class="modal">
+  
+  <div class="modal-content">
+    <span class="close"><h3 style="color:#a88a05;display:inline">Bid On Listing: <p style="display:inline" id="listingid"></p></h3>&nbsp;&times;</span>
+    
+   <input style="color:black;display:none" type="text" id="listingidinput" name="listingidinput" />
+    <input style="color:black;display:none" type="text" id="carPlateNumberSale" name="carPlateNumberSale" />
+Bid Price: <input style="color:black;" type="number" id="price" name="price" />
+   
+<br>
+   <input id="submit" style="color:black;" type="submit" value="Make Offer" onclick="makeOffer()"/>
+ 
+  </div>
+</div>
+    </div>
+
+    <script type="text/javascript">
+
+  function logout() {
+ localStorage.removeItem('username');
+ 
+                
+                      $.ajax({
+    method: "POST",
+            url: "/logout",
+
+        
+        }).done(function (data) {
+          console.log("DONE");
+          
+          window.location.replace("/login");
+            }).fail(function (error) {
+   console.log(error.responseText)
+  })
+  }
+    document.getElementById('username').innerHTML = localStorage.username;
+ var modal = document.getElementById('offer');
+//var putCarOnSaleBtn = document.getElementById("PutCarOnSale");
+var span = document.getElementsByClassName("close")[0];
+
+// span.onclick = function() {
+ //modal.style.display = "none";
+//} 
+window.onclick = function(event) {
+  if (event.target == modal) {
+    modal.style.display = "none";
+  }
+}
+
+function openOfferModal(listingId) {
+  
+ modal.style.display = "block";
+ document.getElementById("listingid").innerHTML = listingId;
+ document.getElementById("listingidinput").value = listingId;
+}
+
+function hello() {
+  console.log("heyyyyyyyy");
+}
+
+function closeSale(newBuyer, price){
+    console.log("yooooooooooooo");
+  
+    console.log(newBuyer);
+let currentUser;
+      $.ajax({
+            url: "/" + localStorage.username + "/api/system/ping",
+            async: false,
+            success: (function (data) {
+                currentUser = data.participant;
+            }),
+        })
+
+             var carListing = "org.nus.carnetwork.CarListing#" + carListingId;
+             var buyer = "org.nus.carnetwork.Person#" + newBuyer;
+        
+        $.ajax({
+                method: "POST",
+                url:  "/" + localStorage.username + "/api/org.nus.carnetwork.CompleteSale",           
+
+               data: {
+               "$class": "org.nus.carnetwork.CompleteSale",               
+                "carListing": carListing,
+                "newOwner": buyer,
+                "bidPrice" : parseFloat(price),
+                "timestamp": new Date(),
+                } 
+                
+				//success: updatePage,
+				//error:  error
+            }).done(function (msg) {
+              
+               location.reload();
+            }).fail(function (error) {
+              
+         console.log(error);
+            })
+}
+
+    $(document).ready(function () {
+
+        let allListings = [];
+        var url = "/hlf/api/org.nus.carnetwork.CarListing/" + "{{id}}";
+      
+
+        $.ajax({
+            url: url
+        }).done(function (data) {
+            console.log(data.offers);
+            let offersArray = data.offers;
+            if(data.offers.length != 0) {
+            carListingId= data.offers[0].carListing.substring(39); 
+             console.log(carListingId);
+            }
+            carPlateNumber = data.car.substring(32);
+            console.log(carPlateNumber);
+           
+           $('#offer').html(function() {
+                //var offersOutput = "<table>";
+                  var offersOutput = '';
+                 offersOutput += "<div class=\"modal-content\">"; 
+                 offersOutput += "<span class=\"close\"><h3 style=\"color:#a88a05;display:inline\">View Offers: <p style=\"display:inline\" id=\"listingid\"></p></h3>&nbsp;&times;</span> <br/>";  
+                
+            for(let i = 0; i<offersArray.length; i++){
+                offersOutput += "<table>";
+               offersOutput += "<tr><th>Bid Price</td><th>Buyer</th></tr>"; 
+                offersOutput += "<tr><td> " + offersArray[i].bidPrice +  "</td>"; 
+                offersOutput += "<td>" + offersArray[i].buyer.substring(35)+  "</td></tr>";
+                offersOutput += "</table>";
+                offersOutput += '<br/><button style =\"color: black\" onclick=\"closeSale('+offersArray[i].buyer.substring(35) + "," +offersArray[i].bidPrice+')\">Accept Offer</button><br><br>';   
+            }
+                
+                offersOutput += "</div>";
+                return offersOutput;
+
+           })
+
+              $('#listing-details').html(function() {
+    
+var output = '';
+ 	        
+       output += " <div class=\"listing-info\">"; 
+        output +=   "<h6 style=\"color:black;font-weight:bold;margin-bottom:20px;\" class=\"listing-title\">Listing ID: " +data.listingId+ "</h6>";
+                output += "<p style=\"color:black\"  class=\"car-details\">Car Plate Number: " + data.car.substring(32) +  "</p>";
+        output += "<p style=\"color:black\"  class=\"car-details\">Reserve Price: " + data.reservePrice +  "</p>";
+output += "<p style=\"color:black\"  class=\"car-details\">Description: " + data.description +  "</p>";
+output += "<p style=\"color:black\"  class=\"car-details\">Date Created: " + data.dateCreated.substring(0,10) +  "</p>";
+output += "<p style=\"color:black\"  class=\"car-details\">Status: " + data.state +  "</p>";
+output += "<p style=\"color:black\"  class=\"car-details\">Seller: " + data.seller.substring(35) +  "</p>";
+output+= '<td><button id="makeOffer" style="color:black" onclick=\"openOfferModal(\''+data.listingId+ '\')\">View Offers </button> </td> </tr>';
+  
+            output += "</div>";
+
+        console.log(output);
+                return output;
+                      })
+                      })
+          });
+
+        
+  
+</script>
+    </body>
+    </html>

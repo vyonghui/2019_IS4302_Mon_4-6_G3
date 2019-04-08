@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet">
+<style>
+    * {
+        font-family: 'Arial', 'Helvetica', 'sans-serif';
+    }
+ .top-nav {
+height:50px;
+background-color:#0047ab;
+z-index:10;
+  position: absolute;
+  top:0;
+  left:0;
+  width:100%;
+  padding:10px;
+ }
+
+
+.nav-link {
+    float:right;
+    color:white;
+    padding:3px 30px ;
+}
+.sidenav {
+  height: 100%;
+  width: 200px;
+  position: fixed;
+  z-index: -1;
+padding:10px;
+  top: 50px;
+  left: 0;
+  background-color: #111;
+  overflow-x: hidden;
+  transition: 0.5s;
+  font-size:1px
+}
+
+.sidenav a {
+  padding: 8px 8px 8px 32px;
+  text-decoration: none;
+  font-size: 25px;
+  color: #818181;
+  display: block;
+  transition: 0.3s;
+}
+
+.sidenav a:hover {
+  color: #f1f1f1;
+}
+
+.sidenav .closebtn {
+  position: absolute;
+  top: 0;
+  right: 25px;
+  font-size: 36px;
+  margin-left: 50px;
+}
+
+@media screen and (max-height: 450px) {
+  .sidenav {padding-top: 15px;}
+  .sidenav a {font-size: 18px;}
+}
+.left-nav-open {
+    font-size:30px;
+    cursor:pointer;
+    color:white;
+    font-size: 20px;
+    margin-left:10px;
+  
+}
+
+hr {
+    display: block;
+    height: 1px;
+    border: 0;
+    border-top: 1px solid #ccc;
+    margin: 1em 0;
+    padding: 0; 
+}
+
+.side-nav-link {
+font-size: 18px;
+display:inline;
+
+}
+
+.profile-info {
+color:white;
+text-align: center;
+}
+.profile {
+    margin:20px;
+}
+
+.profile-icon {
+    font-size:100px;
+    text-align: center;
+    padding: 10px 20px;
+}
+.dashboard-content {
+    position:absolute;
+    top:50px;
+    left:200px;
+    border-spacing:50px 20px;
+}
+.transaction-box {
+     -moz-border-radius: 6px;
+     -webkit-border-radius: 6px;
+     background-color: #f0f7fb;
+     background-image: url(../Images/icons/Pencil-48.png);
+     background-position: 9px 0px;
+     background-repeat: no-repeat;
+     border: solid 1px #3498db;
+     border-radius: 6px;
+     line-height: 30px;
+     overflow: hidden;
+     padding: 15px 15px;
+     margin:20px;
+     height:50px;
+     width:600px;
+       display: table-cell;
+}
+
+
+.box-info {
+    display:inline;
+}
+
+.sidenav-element {
+    
+}
+
+
+
+.material-icons {
+     position: relative;
+  top: 6px;
+
+}
+
+table {
+
+  border-collapse: collapse;
+  width: 100%;
+  background-color:white;
+}
+
+td, th {
+ 
+  text-align: left;
+  padding: 8px;
+   border-bottom: 1px solid #aaaaaa;
+}
+
+tr:nth-child(even) {
+
+}
+
+.grid-container {
+  display: grid;
+  grid-template-columns: auto auto auto;
+ 
+  padding: 20px;
+}
+.grid-item {
+ margin:20px;
+  border: 1px solid rgba(0, 0, 0, 0.8);
+  padding:30px;
+  font-size: 30px;
+  text-align: center;
+}
+</style>
+</head>
+<body>
+
+<div class="top-nav">
+    <a href="#Logout" class="nav-link">Logout</a>
+<a href="/dashboard" class="nav-link">MyDashboard</a>
+</div>
+
+<div id="mySidenav" class="sidenav">
+<div class="profile">
+<i class="material-icons profile-icon">account_circle</i>
+    <h6 class="profile-info">Logged In: <br>{{username}}</h6>
+</div>
+<hr>
+ <div class="sidenav-element"> <a href="cars"><i class="material-icons">time_to_leave</i> <p class="side-nav-link">&nbsp;&nbsp;Cars</p></a>
+  </div><hr>
+  <div class="sidenav-element"><a href="coe"> <i class="material-icons">bookmarks</i> <p class="side-nav-link">&nbsp;&nbsp;COE</p></a>
+  </div><hr>
+  <div class="sidenav-element"><a href="insurance"><i class="material-icons">description</i> <p class="side-nav-link">&nbsp;&nbsp;Insurance</p> </a>
+  </div><hr>
+ <div class="sidenav-element"> <a href="transactions"><i class="material-icons">list</i> <p class="side-nav-link">&nbsp;&nbsp; Transaction</p></a>
+</div></div>
+
+</body>
+</html>

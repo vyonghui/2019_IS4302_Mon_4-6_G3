@@ -1,0 +1,793 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Open+Sans" />
+
+  <!--jquery-->
+  <script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.js"></script>
+  <!--datatables-->
+  <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.16/css/jquery.dataTables.min.css">
+  <script type="text/javascript" src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
+
+  <style>
+    * {
+      font-family: "Open Sans";
+      color: white;
+    }
+
+    .top-nav {
+      height: 60px;
+      background-color: #202020;
+      z-index: 10;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      padding: 10px;
+    }
+
+
+    .nav-link {
+      float: right;
+      color: white;
+      padding: 3px 30px;
+    }
+
+.sidenav {
+  height: 100%;
+  width: 200px;
+  position: fixed;
+  z-index: -1;
+padding:10px;
+  top: 50px;
+  left: 0;
+  background-color: #111;
+  overflow-x: hidden;
+  transition: 0.5s;
+  font-size:1px
+}
+
+.sidenav a {
+  padding: 8px 8px 8px 20px;
+  text-decoration: none;
+  font-size: 10px;
+  color: #818181;
+  display: block;
+  transition: 0.3s;
+}
+
+.sidenav a:hover {
+  color: #f1f1f1;
+}
+
+.sidenav .closebtn {
+  position: absolute;
+  top: 0;
+  right: 25px;
+  font-size: 36px;
+  margin-left: 50px;
+}
+
+@media screen and (max-height: 450px) {
+  .sidenav {padding-top: 15px;}
+  .sidenav a {font-size: 18px;}
+}
+.left-nav-open {
+    font-size:30px;
+    cursor:pointer;
+    color:white;
+    font-size: 20px;
+    margin-left:10px;
+  
+}
+
+hr {
+    display: block;
+    height: 1px;
+    border: 0;
+    border-top: 1px solid #ccc;
+    margin: 1em 0;
+    padding: 0; 
+}
+
+.side-nav-link {
+font-size: 18px;
+display:inline;
+
+}
+    .profile-info {
+      color: white;
+      text-align: center;
+    }
+
+    .profile {
+      margin: 20px;
+        height:160px;
+    }
+
+    .profile-icon {
+      font-size: 100px;
+      text-align: center;
+      padding: 10px 20px;
+    }
+
+    .dashboard-content {
+      position: absolute;
+      padding-top: 60px;
+      top: 0px;
+      left: 200px;
+
+      border-spacing: 50px 20px;
+      background-color: #464856;
+      min-height: 100%;
+    }
+
+    .material-icons {
+      position: relative;
+      top: 6px;
+
+    }
+
+    #logo {
+      margin-left: 35px;
+      margin-top: 3px;
+    }
+
+    .advertisement {}
+
+    .image-ads {
+      width: 100%;
+
+
+    }
+
+    #my-cars {
+      padding-top: 10px;
+      padding-left: 20px;
+    }
+
+    .car-info {
+      background-color: #FAF9FA;
+
+      background-position: 9px 0px;
+      background-repeat: no-repeat;
+
+      border-radius: 6px;
+      line-height: 18px;
+      overflow: hidden;
+      padding: 30px 30px;
+      margin: 20px;
+      height: 300px;
+      width: 900px;
+      display: inline-block;
+      border: solid 2px #606060;
+      text-align: center;
+      border: solid 1px red;
+    }
+
+    .car-details {
+      color: black;
+      text-align: center;
+
+    }
+
+    
+
+    .car-name {
+      color: black;
+      text-align: center;
+      font-weight: 700;
+    }
+
+    .car-document {
+      box-shadow: inset 0px 1px 0px 0px #fff6af;
+
+      background: linear-gradient(to bottom, #FAF9FA 5%, #ffab23 100%);
+      filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffec64', endColorstr='#ffab23', GradientType=0);
+      background-color: #a88a05;
+
+      border-radius: 6px;
+      border: 1px solid #ffaa22;
+      display: inline-block;
+      cursor: pointer;
+      color: #333333;
+
+
+      text-decoration: none;
+      text-shadow: 0px 1px 0px #ffee66;
+      margin: 5px;
+      padding: 8px 5px;
+    }
+
+    .car-image {
+      height: 100px;
+    }
+
+    .transction-buttons {
+      box-shadow: inset 0px 1px 0px 0px #fff6af;
+
+      background: linear-gradient(to bottom, #FAF9FA 5%, #ffab23 100%);
+      filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffec64', endColorstr='#ffab23', GradientType=0);
+      background-color: #a88a05;
+
+      border-radius: 6px;
+      border: 1px solid #ffaa22;
+      display: inline-block;
+      cursor: pointer;
+      color: #333333;
+
+
+      text-decoration: none;
+      text-shadow: 0px 1px 0px #ffee66;
+
+      padding: 5px 10px;
+      margin: 20px 50px;
+    }
+
+    .close-sale {
+      color: #aaaaaa;
+      float: right;
+      font-size: 28px;
+      font-weight: bold;
+
+    }
+
+    .close-sale:hover,
+    .close-sale:focus {
+      color: #000;
+      text-decoration: none;
+      cursor: pointer;
+    }
+
+    .modal {
+
+      display: none;
+      /* Hidden by default */
+      position: fixed;
+      /* Stay in place */
+      z-index: 1;
+      /* Sit on top */
+      padding-top: 100px;
+      /* Location of the box */
+      left: 100px;
+      top: 0;
+      width: 100%;
+      /* Full width */
+      height: 100%;
+      /* Full height */
+      overflow: auto;
+      /* Enable scroll if needed */
+      background-color: rgb(0, 0, 0);
+      /* Fallback color */
+      background-color: rgba(0, 0, 0, 0.4);
+      /* Black w/ opacity */
+
+    }
+
+    /* Modal Content */
+    .modal-content {
+      background-color: #202020;
+      margin: auto;
+      padding: 20px;
+      border: 1px solid #888;
+      width: 80%;
+    }
+
+    table {
+      padding: 50px;
+      color: white;
+      text-align: center;
+      font-size: 12px;
+      border-collapse: collapse;
+      width: 100%;
+      background-color: #202020;
+
+    }
+
+    th {}
+
+    td,
+    th {
+
+
+      padding: 8px;
+      border-bottom: 1px solid #aaaaaa;
+    }
+
+    tr:nth-child(even) {
+
+      background-color: #a88a05;
+    }
+
+    .car-basic-info {
+
+      display: inline;
+      width: 50%;
+      float: left;
+      margin-top: 60px;
+    }
+
+    .car-document-info {
+
+      width: 50%;
+      display: inline;
+      float: left;
+    }
+    
+  .modal {
+
+      display: none;
+      /* Hidden by default */
+      position: fixed;
+      /* Stay in place */
+      z-index: 1;
+      /* Sit on top */
+      padding-top: 100px;
+      /* Location of the box */
+      left: 400px;
+      top: 100px;
+      width: 50%;
+      /* Full width */
+      height: 70%;
+      /* Full height */
+      overflow: auto;
+      /* Enable scroll if needed */
+      background-color: rgb(0, 0, 0);
+      /* Fallback color */
+      background-color: rgba(0, 0, 0, 0.4);
+      /* Black w/ opacity */
+
+    }
+
+    /* Modal Content */
+    .modal-content {
+      background-color: #202020;
+      margin: auto;
+      padding: 20px;
+      border: 1px solid #888;
+      width: 80%;
+    }
+         .loader {
+  position: relative;
+  text-align: center;
+  margin: 300px 650px;
+  z-index: 9999;
+  display: block;
+  width: 80px;
+  height: 80px;
+  border: 10px solid rgba(0, 0, 0, .3);
+  border-radius: 50%;
+  border-top-color: #000;
+  animation: spin 1s ease-in-out infinite;
+  -webkit-animation: spin 1s ease-in-out infinite;
+}
+.modal-popup{
+  display:none;
+  width:100%;
+  height:100%;
+  position:fixed;
+  left:0;
+  top:0;
+  background-color:rgb(255,255,255,50%);
+ 
+  z-index:9999;
+}
+@keyframes spin {
+  to {
+    -webkit-transform: rotate(360deg);
+  }
+}
+
+@-webkit-keyframes spin {
+  to {
+    -webkit-transform: rotate(360deg);
+  }
+}
+
+  </style>
+</head>
+
+<body>
+
+  <div class="top-nav">
+    <img id="logo" src="images/logo.jpg" height="40px"></img>
+     <h6 style="cursor:pointer"onclick="logout()" class="nav-link">Logout</h6>
+    <a href="/dashboard" class="nav-link">MyDashboard</a>
+  </div>
+<div id="mySidenav" class="sidenav">
+<div class="profile">
+<i class="material-icons profile-icon">account_circle</i>
+    <h6 class="profile-info">Logged In As: <br><b><p style="margin:5px" id="username"></p></b></h6>
+   
+</div>
+<hr>
+ <div class="sidenav-element"> <a href="cars"><i class="material-icons">time_to_leave</i> <p class="side-nav-link">&nbsp;&nbsp;Cars</p></a>
+  </div><hr>
+  <div class="sidenav-element"><a href="coe"> <i class="material-icons">bookmarks</i> <p class="side-nav-link">&nbsp;&nbsp;COE</p></a>
+  </div><hr>  
+  <div class="sidenav-element"><a href="insurance"><i class="material-icons">description</i> <p class="side-nav-link">&nbsp;&nbsp;Insurance</p> </a>
+  </div><hr>
+
+</div>
+
+  <div class="dashboard-content">
+    <div class="advertisement">
+      <a href="transactions"><img class="image-ads" src="images/advertisement.png"></img></a>
+    </div>
+    <div class="transactions">
+      <div class="transction-buttons">
+        <a href="newcar">
+          <h6 class="box-info"><b style="color:black;">Buy New Car</b></h6>
+      </div></a>
+      <hr style="margin:0px 50px">
+    </div>
+
+    <div id="my-cars">
+
+
+
+
+    </div>
+    <div id="put-car-on-sale" class="modal">
+
+      <div class="modal-content">
+        <span class="close-sale">
+          <h3 style="color:#a88a05;display:inline">Put Car On Sale</h3>&nbsp;&times;
+        </span>
+
+        <div id="my-cars-sale">
+
+        </div>
+        <input style="color:black;display:none" type="text" id="carPlateNumberSale" name="carPlateNumberSale" />
+        Minimum Price: <input style="color:black;" type="number" id="price" name="price" />
+        Description: <textarea style="color:black;" rows="5" col="10" name="description" id="description"></textarea>
+        <br>
+        <input style="color:black;" type="submit" value="Create Listing" onclick="createListing()" />
+
+      </div>
+
+    </div>
+
+  </div>
+  <div class="modal-popup " id="loadMe" tabindex="-1">
+
+        <div class="loader"></div>
+        <div clas="loader-txt">
+         
+        </div>
+    
+</div> 
+   <div id="apply-coe" class="modal">
+
+      <div class="modal-content">
+        <span onclick="closeOwner()" class="close-sale">
+          <h3 style="color:#a88a05;display:inline">Past Owners</h3>&nbsp;&times;
+        </span>
+<div id="owners"></div>
+       
+      </div>
+
+    </div>
+  <script type="text/javascript">
+ var applyCOEModal = document.getElementById("apply-coe");
+
+   
+    window.onclick = function (event) {
+      if (event.target == applyCOEModal) {
+        applyCOEModal.style.display = "none";
+      }
+    }
+function closeOwner(){
+    applyCOEModal.style.display = "none";
+}
+
+
+function getOwners(carPlateNumber) {
+  //document.getElementById('getOwner').innerHTML = 'Loading...';
+  let owners = [];
+  $.ajax({
+          method: "GET",
+          url: "/" + localStorage.username + "/api/system/historian",
+async: false,
+          //success: updatePage,
+          //error:  error
+        }).done(function (msg) {
+        console.log(msg);
+        for (var i = 0;i < msg.length; i++) {
+          if(msg[i].transactionType.substring(19) == "CompleteSale"  ) {
+
+
+          $.ajax({
+          method: "GET",
+          url: "/hlf/api/org.nus.carnetwork.CompleteSale/" + msg[i].transactionId,
+async: false,
+          //success: updatePage,
+          //error:  error
+        }).done(function (data) {
+       
+          $.ajax({
+          method: "GET",
+          url: "/hlf/api/org.nus.carnetwork.CarListing/" + data.carListing.substring(39),
+async: false,
+          //success: updatePage,
+          //error:  error
+        }).done(function (data2) {
+        
+       // console.log(data2.car.substring(32));
+if (data2.car.substring(32) == carPlateNumber) {
+  console.log("DSFDSS");
+  console.log(i);
+owners.push(msg[i].transactionTimestamp+"|"+msg[i].participantInvoking.substring(28));
+}
+  
+              
+     
+        }).fail(function (error) {
+
+          console.log(error);
+        })
+
+
+
+      
+      
+        }).fail(function (error) {
+
+          console.log(error);
+        })
+
+
+
+          }
+        }
+  $('#owners').html(function() {
+    var output = "<table><th>Date Sold</th><th>Owner NRIC</th>";
+        	for (var k = 0; k < owners.length;k++) {
+        
+   output +="<tr>"
+   output +=" <td>"+owners[k].substring(0,10)+"</td>";
+  output +=" <td>"+owners[k].substring(32)+"</td>";
+output +='</tr>';
+
+              }
+              output += '</table>';
+              applyCOEModal.style.display = "block";
+              return output;
+        console.log(owners);
+  })
+               
+        }).fail(function (error) {
+
+          console.log(error);
+        })
+}
+
+
+
+
+    var putCarOnSaleModal = document.getElementById('put-car-on-sale');
+    //var putCarOnSaleBtn = document.getElementById("PutCarOnSale");
+    var putCarOnSaleSpan = document.getElementsByClassName("close-Sale")[0];
+
+    document.getElementById('username').innerHTML = localStorage.username;
+    window.onclick = function (event) {
+      if (event.target == putCarOnSaleModal) {
+        putCarOnSaleModal.style.display = "none";
+      }
+    }
+    function putCarOnSale(carPlateNumber) {
+      // console.log("hello");
+       document.getElementById('getOwner').innerHTML = 'Get Past Owners';
+      putCarOnSaleModal.style.display = "block";
+
+      document.getElementById('carPlateNumberSale').value = carPlateNumber;
+
+    }
+
+    function scrapCar(carPlateNumber) {
+
+
+
+
+      if (window.confirm("Are you sure you want to scrap car: " + carPlateNumber + "?")) {
+        var car = "org.nus.carnetwork.Car#" + carPlateNumber;
+        $.ajax({
+          method: "POST",
+          url: "/" + localStorage.username + "/api/org.nus.carnetwork.scrapCar",
+
+          data: {
+            "$class": "org.nus.carnetwork.scrapCar",
+            "car": car,
+
+            "timestamp": new Date(),
+
+          }
+
+          //success: updatePage,
+          //error:  error
+        }).done(function (msg) {
+          alert("Car " + carPlateNumber + " successfully scrapped!");
+          location.reload();
+        }).fail(function (error) {
+
+          console.log(error);
+        })
+      }
+    }
+
+    function createListing() {
+
+      let currentUser;
+      const carPlateNumber = $('#carPlateNumberSale').val();
+      const price = $('#price').val();
+      const description = $('#description').val();
+      $.ajax({
+        url: "/" + localStorage.username + "/api/system/ping",
+        async: false,
+        success: (function (data) {
+          currentUser = data.participant;
+        }),
+      })
+
+      var car = "org.nus.carnetwork.Car#" + carPlateNumber;
+      $.ajax({
+        method: "POST",
+        url: "/" + localStorage.username + "/api/org.nus.carnetwork.PutCarOnSale",
+
+
+        data: {
+          "$class": "org.nus.carnetwork.PutCarOnSale",
+          "car": car,
+          "price": price,
+          "description": description,
+          "timestamp": new Date(),
+
+        }
+
+        //success: updatePage,
+        //error:  error
+      }).done(function (msg) {
+
+        location.reload();
+      }).fail(function (error) {
+
+        console.log(error);
+      })
+    }
+
+    $(document).ready(function () {
+ var modal = document.getElementById('loadMe');
+      
+     modal.style.backdrop = ('static');
+      modal.style.keyboard = ('false');
+  modal.style.display = ('block');
+      let myCars = [];
+      $.ajax({
+        url: "/" + localStorage.username + "/api/org.nus.carnetwork.Car",
+             
+      }).done(function (data) {
+         modal.style.display = ('none');
+        data.forEach(function (car, i) {
+          myCars.push(car);
+        });
+        $('#my-cars').html(function () {
+          // console.log(myCars);
+          var output = '';
+
+
+          for (var i = 0; i < myCars.length; i++) {
+
+            output += "<div class=\"car-info\">";
+            output += "<div class=\"car-basic-info\">";
+            output += "<h6 class=\"car-name\">Car Plate Number: " + myCars[i].carPlateNumber + "</h6>";
+
+            output += "<button id='PutCarOnSale' onclick=\"putCarOnSale(\'" + myCars[i].carPlateNumber + "\')\" class=\"car-document\"  style=\"color:black\">Sell This Car</button>";
+            output += "<button id='ScrapCar' onclick=\"scrapCar(\'" + myCars[i].carPlateNumber + "\')\" class=\"car-document\"  style=\"color:black\">Scrap This Car</button><br>";
+           output += "<button id='getOwner' onclick=\"getOwners(\'" + myCars[i].carPlateNumber + "\')\" class=\"car-document\"  style=\"color:black\">Get Past Owners</button><br>";
+   
+            output += "</div><div class=\"car-document-info\">";
+            output += "<div id=\"" + myCars[i].carPlateNumber + "\"></div>"
+            output += "<div id=\"" + myCars[i].carPlateNumber + "ins\"></div>"
+            output += "<div id=\"" + myCars[i].carPlateNumber + "insp\"></div>"
+            output += "</div>";
+            output += "</div>";
+            //  console.log(output);
+
+          }
+          return output;
+          // console.log(myCars[i].coe.substring(32));
+
+
+
+        })
+
+        for (var i = 0; i < myCars.length; i++) {
+          var carPlateNumber2 = myCars[i].carPlateNumber;
+          if (myCars[i].coe != undefined) {
+
+            $.ajax({
+              method: "GET",
+              url: "/" + localStorage.username + "/api/org.nus.carnetwork.COE/" + myCars[i].coe.substring(32),
+       async: false,
+            }).done(function (msg) {
+              //   console.log(msg);
+ modal.style.display = ('none');
+              var output2 = '<hr><table> <th>COE ID</th>    <th>Expiry Date</th>    <th>Category</th>    <th>Status</th>      ';
+
+              output2 += "<tr>"
+              output2 += " <td>" + msg.coeId + "</td>";
+              output2 += "    <td>" + msg.expiryDate.substring(0, 10) + "</td>";
+              output2 += "<td>" + msg.coeCategory + "</td>";
+              output2 += "<td>" + msg.documentStatus + "</td>";
+
+              output2 += '</tr></table>';
+
+              document.getElementById(carPlateNumber2).innerHTML = output2;
+             
+         
+                  if (myCars[i].inspectionDocument != undefined) {
+                  
+                    var carPlateNumber3 = myCars[i].carPlateNumber;
+                    console.log(carPlateNumber3); 
+                    $.ajax({
+                      method: "GET",
+                      url: "/" + localStorage.username + "/api/org.nus.carnetwork.InspectionDocument/" + myCars[i].inspectionDocument.substring(47),
+
+                    }).done(function (msg) {
+                      //console.log(msg);
+                      var output4 = '<hr><table> <th>Inspection ID</th>    <th>Date Inspected</th>        <th>Condition Rating</th>      ';
+                      if (msg !== undefined) {
+                        output4 += "<tr>"
+                        output4 += " <td>" + msg.inspectionDocumentId + "</td>";
+                        output4 += "    <td>" + msg.dateInspected.substring(0, 10) + "</td>";
+                        output4 += "<td>" + msg.conditionRating + "</td>";
+
+                        output4 += '</tr></table>';
+                      }
+                       
+                      document.getElementById(carPlateNumber3 + "insp").innerHTML = output4;
+                        modal.style.display = ('none');
+                    }).fail(function (error) {
+
+                      console.log(error);
+                    })
+                  }
+                }).fail(function (error){
+          console.log(error);
+        })
+              
+            }
+          }
+        }).fail(function (error){
+          
+          console.log(error);
+        })
+         
+      })
+    
+                  
+  function logout() {
+ localStorage.removeItem('username');
+ 
+                
+                      $.ajax({
+    method: "POST",
+            url: "/logout",
+
+        
+        }).done(function (data) {
+          console.log("DONE");
+          
+          window.location.replace("/login");
+            }).fail(function (error) {
+   console.log(error.responseText)
+  })
+  }
+   
+
+  </script>
+</body>
+
+</html>
